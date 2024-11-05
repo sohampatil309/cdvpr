@@ -1,0 +1,14 @@
+clc;
+close all;
+x=[1 2 3 4];
+l=length(x);
+X=0;
+syms z;
+for i=0:l-1
+    X=X+x(i+1)*z^(-i);
+end 
+disp('x is');
+disp(x);
+disp('Z tranform is');
+disp(X);
+
