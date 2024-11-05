@@ -1,0 +1,49 @@
+clear all;
+close all;
+clc;
+
+% Define the time vector and signal frequency
+t = -100:0.01:100;
+fm = 0.02; % Signal frequency
+
+% Generate the continuous cosine signal
+x = cos(2 * pi * fm * t);
+
+% Plot the continuous signal
+figure;
+subplot(2, 2, 1)
+plot(t, x, 'g')
+xlabel('Time (t)')
+ylabel('Amplitude')
+title('Continuous Cosine Signal')
+
+% Define sample indices
+n = -2:1:2;
+
+% Case 1: Sampling Frequency fs = fm
+fs1 = fm;  % Sampling rate equal to signal frequency
+y1 = cos(2 * pi * fm * (n / fs1));
+subplot(2, 2, 2)
+stem(n, y1, 'r')
+xlabel('Sample Index (n)')
+ylabel('Amplitude')
+title('Sampling with f_s = f_m')
+
+% Case 2: Sampling Frequency fs > fm
+fs2 = 2 * fm;  % Sampling rate higher than signal frequency (Nyquist rate)
+y2 = cos(2 * pi * fm * (n / fs2));
+subplot(2, 2, 3)
+stem(n, y2, 'b')
+xlabel('Sample Index (n)')
+ylabel('Amplitude')
+title('Sampling with f_s > f_m (Nyquist Rate)')
+
+% Case 3: Sampling Frequency fm > fs
+fs3 = 0.5 * fm;  % Sampling rate lower than signal frequency (undersampling)
+y3 = cos(2 * pi * fm * (n / fs3));
+subplot(2, 2, 4)
+stem(n, y3, 'm')
+xlabel('Sample Index (n)')
+ylabel('Amplitude')
+title('Sampling with f_m > f_s (Undersampling)')
+
