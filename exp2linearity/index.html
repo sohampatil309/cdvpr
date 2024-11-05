@@ -1,0 +1,13 @@
+x1 = input('Enter seq eg. [1, 2, 3, 4]: ');
+x2 = input('Enter seq eg. [1, 2, 3, 4]: ');
+X1 = fft(x1);
+X2 = fft(x2);
+a = 2;
+b = 2;
+x = (a * x1) + (b * x2);
+LHS = fft(x);
+RHS = a * X1 + b * X2;
+disp('LHS:');
+disp(LHS);
+disp('RHS:');
+disp(RHS);
