@@ -1,0 +1,22 @@
+clear all;
+close all;
+clc;
+Xn=input("enter the no of samples:")
+N=input("enter N:")
+k=0:N-1;
+for n=0:N-1
+   for  K=0:N-1
+    Wn=exp((-j*2*pi*k*n)/N);
+    X1(k+1,n+1)=Wn
+
+   end
+end
+figure;
+Xk=Xn*X1;
+k=0:N-1;
+subplot(2,2,1)
+stem(k,abs(Xk))
+title("magnitude plot")
+subplot(2,2,2)
+stem(k,angle(Xk))
+title ("phase plot")
