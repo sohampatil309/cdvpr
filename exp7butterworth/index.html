@@ -1,0 +1,45 @@
+2 tok
+clc;
+close all;
+alphas=30;
+alphap=0.5;
+fpass=1000;
+fstop=1500;
+fsam=5000;
+wp=2*fpass/fsam;
+ws=2*fstop/fsam;
+[n,wn]=buttord(wp,ws,alphap,alphas);
+[b,a]=butter(n,wn);
+[h,w]=freqz(b,a);
+subplot(2,1,1);
+plot(w/pi,20*log10(abs(h)));
+xlabel('normalized frequency')
+ylabel('Gain in db')
+title('Magnitude Response')
+subplot(2,1,2);
+plot(w/pi,angle(h));
+xlabel('normalized frequency')
+ylabel('Phase in Radian')
+title('Phase Response')
+
+
+
+clc;
+close all;
+fs=1000%sampling frequency
+fn=fs/2;
+fc=300;%cut off frequency
+n=5;
+[z,p,k]=butter(n,fc/fn);
+b=k*poly(z);%zeros
+a=poly(p);%poles
+[h,om]=freqz(b,a,512,fs);
+subplot(2,1,1),plot(om,20*log10(abs(h)));
+xlabel('Normalized frequency')
+ylabel('gain in db')
+title('magnitude response')
+subplot(2,1,2),plot(om,angle(h));
+xlabel('Normalized frequency')
+ylabel('phase in radians')
+title('phase response')
+
