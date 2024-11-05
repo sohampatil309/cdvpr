@@ -1,0 +1,12 @@
+clc;
+close all;
+syms n;
+x=n+1;
+disp('Input Eq:')
+disp(x);
+y=ztrans(x);
+disp('Z Transform:')
+disp(y)
+ans1=iztrans(y);
+disp('Inverse Z Transform:')
+disp(ans1)
