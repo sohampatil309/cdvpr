@@ -1,0 +1,27 @@
+RASPBERRY pi4 for PIR
+import Rpi.GPIO as GPIO
+import time
+GPIO.setmode(GPIO.BCM)
+GPIO.setup(3,GPIO.IN)
+GPIO.setup(17,GPIO.OUT)
+try:
+     while True:
+             GPIO.output(17, GPIO.INPUT(3))
+              time.sleep(0.2)
+except KeyboardInterrupt:
+      GPIO.cleanup()
+
+RASPBERRY PI4 FOR IR
+import Rpi.GPIO as GPIO
+import time
+GPIO.setmode(GPIO.BCM)
+GPIO.setup(3,GPIO.IN)
+GPIO.setup(17,GPIO.OUT)
+try:
+     while True:
+             GPIO.output(17, not GPIO.INPUT(3))
+              time.sleep(0.2)
+except KeyboardInterrupt:
+      GPIO.cleanup()
+
+
