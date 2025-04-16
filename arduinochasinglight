@@ -1,0 +1,23 @@
+6) Program Arduino to create a chasing light effect using 7 LEDs.
+
+// Define the pins for the 7 LEDs
+int ledPins[] = {2, 3, 4, 5, 6, 7, 8};
+int ledCount = 7;
+
+void setup() {
+  // Set all LED pins as OUTPUT
+  for (int i = 0; i < ledCount; i++) {
+    pinMode(ledPins[i], OUTPUT);
+  }
+}
+
+void loop() {
+  // Forward blinking only
+  for (int i = 0; i < ledCount; i++) {
+    digitalWrite(ledPins[i], HIGH);  // Turn on LED
+    delay(200);                      // Wait
+    digitalWrite(ledPins[i], LOW);   // Turn off LED
+    delay(50);                       // Small gap before next
+  }
+  // After last LED, it automatically loops back to the first one
+}
