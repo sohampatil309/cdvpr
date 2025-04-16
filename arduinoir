@@ -1,0 +1,24 @@
+2) Build an obstacle detection system using an IR sensor and Arduino that lights up an LED when an object is detected.
+
+int irSensor = 2;     // IR sensor output pin connected to D2
+int ledPin = 13;      // LED connected to D13
+
+void setup() {
+  pinMode(irSensor, INPUT);
+  pinMode(ledPin, OUTPUT);
+  Serial.begin(9600); // Optional: For debugging
+}
+
+void loop() {
+  int sensorValue = digitalRead(irSensor);
+
+  if (sensorValue == LOW) {  // Assuming LOW when object is detected
+    digitalWrite(ledPin, HIGH); // Turn on LED
+    Serial.println("Object Detected!");
+  } else {
+    digitalWrite(ledPin, LOW);  // Turn off LED
+    Serial.println("No Object.");
+  }
+
+  delay(100);
+}
