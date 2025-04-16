@@ -1,0 +1,19 @@
+11) Program Arduino to create a chasing light effect using 7 LEDs in Reverse direction.
+// Define pin numbers for the 7 LEDs
+const int ledPins[] = {2, 3, 4, 5, 6, 7, 8};
+
+void setup() {
+  // Initialize each LED pin as an output
+  for (int i = 0; i < 7; i++) {
+    pinMode(ledPins[i], OUTPUT);
+  }
+}
+
+void loop() {
+  // Reverse chasing light effect
+  for (int i = 6; i >= 0; i--) {
+    digitalWrite(ledPins[i], HIGH); // Turn on LED
+    delay(200); // Wait for 200 milliseconds
+    digitalWrite(ledPins[i], LOW); // Turn off LED
+  }
+}
