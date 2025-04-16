@@ -1,0 +1,35 @@
+12) Simulate Home automation system using tinker cad. a) Turn ON an LED (light) when motion is detected using a PIR sensor. b) When motion is detected, flash an LED and sound a buzzer as an intruder alert.
+int pirSensorPin = 2;  // PIR sensor input pin (connected to D2)
+int ledPin = 8;        // LED output pin
+int buzzerPin = 9;     // Buzzer output pin
+
+void setup() {
+  pinMode(pirSensorPin, INPUT); // PIR sensor as input
+  pinMode(ledPin, OUTPUT);      // LED as output
+  pinMode(buzzerPin, OUTPUT);   // Buzzer as output
+  Serial.begin(9600);           // Start serial communication for debugging
+}
+
+void loop() {
+  int motionDetected = digitalRead(pirSensorPin);  // Read PIR sensor status
+
+  if (motionDetected == HIGH) {  // Motion detected
+    digitalWrite(ledPin, HIGH);  // Turn on the LED (light)
+    digitalWrite(buzzerPin, HIGH);  // Turn on the buzzer (intruder alert)
+    delay(500);  // Keep buzzer on and LED on for 500ms
+    digitalWrite(buzzerPin, LOW);  // Turn off the buzzer
+    delay(500);  // Turn off the LED and wait before the next cycle
+  } else {
+    digitalWrite(ledPin, LOW);  // Turn off the LED (light)
+    digitalWrite(buzzerPin, LOW);  // Turn off the buzzer
+  }
+
+  // Print the PIR sensor status to the Serial Monitor
+  if (motionDetected == HIGH) {
+    Serial.println("Motion Detected!");
+  } else {
+    Serial.println("No Motion");
+  }
+
+  delay(1000);  // Delay for 1 second before checking again
+}
