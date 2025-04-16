@@ -1,0 +1,32 @@
+4) Build a temperature alert system using Arduino that turns on a red LED and buzzer when the temperature exceeds a defined threshold.
+
+const int tempPin = A0;       // LM35 output pin
+const int ledPin = 8;         // Red LED pin
+const int buzzerPin = 9;      // Buzzer pin
+const float thresholdTemp = 30.0; // Threshold temperature in °C
+
+void setup() {
+  pinMode(ledPin, OUTPUT);
+  pinMode(buzzerPin, OUTPUT);
+  Serial.begin(9600);
+}
+
+void loop() {
+  int sensorValue = analogRead(tempPin);
+  float voltage = sensorValue * (5.0 / 1023.0);
+  float temperatureC = voltage * 100;  // LM35 gives 10mV per °C
+
+  Serial.print("Temperature: ");
+  Serial.print(temperatureC);
+  Serial.println(" °C");
+
+  if (temperatureC > thresholdTemp) {
+    digitalWrite(ledPin, HIGH);
+    digitalWrite(buzzerPin, HIGH);
+  } else {
+    digitalWrite(ledPin, LOW);
+    digitalWrite(buzzerPin, LOW);
+  }
+
+  delay(1000);  // Delay of 1 second
+}
