@@ -1,0 +1,65 @@
+----------------------------------------------------------------------------------
+-- Company: 
+-- Engineer: 
+-- 
+-- Create Date:    09:25:42 04/14/2025 
+-- Design Name: 
+-- Module Name:    abc - Behavioral 
+-- Project Name: 
+-- Target Devices: 
+-- Tool versions: 
+-- Description: 
+--
+-- Dependencies: 
+--
+-- Revision: 
+-- Revision 0.01 - File Created
+-- Additional Comments: 
+--
+----------------------------------------------------------------------------------
+library IEEE;
+use IEEE.STD_LOGIC_1164.ALL;
+
+-- Uncomment the following library declaration if using
+-- arithmetic functions with Signed or Unsigned values
+--use IEEE.NUMERIC_STD.ALL;
+
+-- Uncomment the following library declaration if instantiating
+-- any Xilinx primitives in this code.
+--library UNISIM;
+--use UNISIM.VComponents.all;
+
+entity abc is
+    Port ( clk : in  STD_LOGIC;
+           reset : in  STD_LOGIC;
+           din : in  STD_LOGIC;
+           dir : in  STD_LOGIC;
+           q : out  STD_LOGIC_VECTOR (3 downto 0));
+end abc;
+
+architecture Behavioral of abc is
+signal qa: std_logic_vector(3 downto 0);begin
+ process(clk, reset)
+begin
+             if reset='1' then
+                 qa<="0000";
+       elsif (clk 'event and clk='1') then
+		 
+		 if dir='1' then
+                 qa (3)<=din;
+                 qa (2)<=qa(3);	
+                 qa (1)<=qa(2);
+                 qa (0)<= qa(1);
+ 
+else
+                qa(3)<=qa(2);
+                qa(2)<=qa(1);
+                qa(1)<=qa(0);
+                qa(0)<= din;
+end if;
+end if;
+
+end process;
+q<=qa;
+
+end Behavioral;
