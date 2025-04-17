@@ -1,0 +1,63 @@
+----------------------------------------------------------------------------------
+-- Company: 
+-- Engineer: 
+-- 
+-- Create Date:    21:24:18 04/13/2025 
+-- Design Name: 
+-- Module Name:    abc - Behavioral 
+-- Project Name: 
+-- Target Devices: 
+-- Tool versions: 
+-- Description: 
+--
+-- Dependencies: 
+--
+-- Revision: 
+-- Revision 0.01 - File Created
+-- Additional Comments: 
+--
+----------------------------------------------------------------------------------
+library IEEE;
+use IEEE.STD_LOGIC_1164.ALL;
+use ieee.std_logic_arith.all; 
+use ieee.std_logic_unsigned.all;
+
+-- Uncomment the following library declaration if using
+-- arithmetic functions with Signed or Unsigned values
+--use IEEE.NUMERIC_STD.ALL;
+
+-- Uncomment the following library declaration if instantiating
+-- any Xilinx primitives in this code.
+--library UNISIM;
+--use UNISIM.VComponents.all;
+
+entity abc is
+    Port ( a : in  STD_LOGIC_VECTOR (3 downto 0);
+           b : in  STD_LOGIC_VECTOR (3 downto 0);
+           s : in  STD_LOGIC_VECTOR (3 downto 0);
+           cin : in  STD_LOGIC;
+           y : out  STD_LOGIC_VECTOR (3 downto 0));
+end abc;
+
+architecture Behavioral of abc is
+
+begin
+  with s (3 downto 0) select 
+             y<=a+b+cin  when "0000", 
+                    a-b   when "0001", 
+                     a+'1' when "0010", 
+                     a-'1' when "0011", 
+                     a+b when "0100", 
+                     b-'1' when "0101", 
+                     b when "0110", 
+                     b+'1' when "0111",
+                     not a when "1000", 
+                     a and b when "1001", 
+                     a or b when "1010", 
+                     a xor b when "1011", 
+                     a nand b when "1100", 
+                     a nor b when "1101", 
+                     a xnor b when "1110", 
+                     not b when others;
+
+end Behavioral;
